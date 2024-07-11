@@ -2,6 +2,7 @@ import duckdb
 import click
 from rich.console import Console
 from rich.table import Table
+from rich.markdown import Markdown
 import pandas as pd
 
 console = Console()
@@ -83,7 +84,7 @@ class ChordNode:
        console.print(f"\t The supremum node {maximum} is responsible for the key {key}.")
        return maximum
     minimum = min(self.FT)
-    console.print(f"\t The infimum node {maximum} is responsible for the key {key}.")
+    console.print(f"\t The infimum node {minimum} is responsible for the key {key}.")
     return minimum
 
 
@@ -127,8 +128,11 @@ def draw_finger_print(index, rows):
 @click.command()
 @click.option('--start', default=1, help='Start node')
 @click.option('--key', default=29, help='Goal key')
-def path(start, key):
-    node_set = [1,4,9,11,14,18,20,21,28]
+@click.option('--new-node', '-nn', multiple=True, type=int, default=[])
+def path(start, key, new_node):
+    node_set = sorted([1,4,9,11,14,18,20,21,28, *new_node])
+    console.print("Chrod Algorithm by Carlos Sanchez and López-Nava, I. H")
+    console.print(f"Node set: {node_set}")
     indexes = {node: i for i, node in enumerate(node_set)}
     ring = []
     for i in range(len(node_set)):
@@ -138,7 +142,11 @@ def path(start, key):
     for index in range(len(heartbeats)):
         draw_finger_print(node_set[index], next(heartbeats[index])[2])
     click.echo(f"Finding path from {start} to key {key}")
-    ring[indexes[start%ring[0].MAXPROC]].find_node(key)
+    try:
+        ring[indexes[start%ring[0].MAXPROC]].find_node(key)
+    except:
+        ring[0].find_node(key)
+
 
 
 if __name__ == '__main__':
