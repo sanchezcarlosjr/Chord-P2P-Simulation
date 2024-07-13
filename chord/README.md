@@ -1,4 +1,4 @@
-# Chord Algorithm
+# Chord Protocol
 
 ![image](https://github.com/user-attachments/assets/422c59e1-4fca-4fa3-9871-7b157e77b6a1)
 
