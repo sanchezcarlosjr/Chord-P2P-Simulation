@@ -131,7 +131,7 @@ def draw_finger_print(index, rows):
 @click.option('--new-node', '-nn', multiple=True, type=int, default=[])
 def path(start, key, new_node):
     node_set = sorted([1,4,9,11,14,18,20,21,28, *new_node])
-    console.print("Chrod Algorithm by Carlos Sanchez and López-Nava, I. H")
+    console.print("Chord Protocol by López-Nava, I. H and Sanchez-Torres C.")
     console.print(f"Node set: {node_set}")
     indexes = {node: i for i, node in enumerate(node_set)}
     ring = []
