@@ -17,7 +17,7 @@ conda create -f env.yml
 conda activate chord-ds
 ```
 
-# Simulation
+## Simulation
 ```
 python node.py --help
 ```
@@ -34,5 +34,10 @@ python node.py --start 9 --key 31
 
 ```
 python node.py --start 1 --key 50
+```
+
+
+```
+python node.py --start 7 --key 50 -nn 7
 ```
 
