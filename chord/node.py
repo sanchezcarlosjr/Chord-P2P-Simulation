@@ -76,7 +76,7 @@ class ChordNode:
       console.print(f"\t The succesor {self.FT[1]} is responsible for the key {key}.")
       return self.FT[1]                                     # successor responsible
     for i in range(1, self.nBits+1):                        # go through rest of FT
-      if self.__inbetween(key, self.FT[i], self.FT[(i+1)]): # key in [FT[i],FT[i+1])
+      if self.__inbetween(key, self.FT[i], self.FT[i+1]): # key in [FT[i],FT[i+1])
         console.print(f"\t The node {self.FT[i]} is responsible for the key {key}.")
         return self.FT[i]                                   # FT[i] is responsible
     maximum = max(self.FT)
@@ -131,7 +131,7 @@ def draw_finger_print(index, rows):
 @click.option('--new-node', '-nn', multiple=True, type=int, default=[])
 def path(start, key, new_node):
     node_set = sorted([1,4,9,11,14,18,20,21,28, *new_node])
-    console.print("Chrod Algorithm by Carlos Sanchez and López-Nava, I. H")
+    console.print("Chrod Algorithm by López-Nava, I. H and Sánchez-Torres, C. E.")
     console.print(f"Node set: {node_set}")
     indexes = {node: i for i, node in enumerate(node_set)}
     ring = []
