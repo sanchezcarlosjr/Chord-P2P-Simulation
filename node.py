@@ -63,7 +63,8 @@ class ChordNode:
   def __recomputeFingerTable(self):
     self.FT[0] = self.nodeSet[self.nodePosition-1] # Predecessor.
     self.FT[1:] = [self.__finger(i) for i in range(1,self.nBits+1)]  # Successors 
-    self.FT.append(self)                                      # This node 
+    self.FT.append(self)                                      # This nodeSet
+    print("=====", len(self.FT))
 
   def __inbetween(self, key, left, right):
     key = key % self.MAXPROC
@@ -75,7 +76,7 @@ class ChordNode:
     elif self.__inbetween(key, self.nodeID+1, self.FT[1]):  # key in (self,FT[1]]
       console.print(f"\t The succesor {self.FT[1]} is responsible for the key {key}.")
       return self.FT[1]                                     # successor responsible
-    for i in range(1, self.nBits+1):                        # go through rest of FT
+    for i in range(1, self.nBits+2):                        # go through rest of FT
       if self.__inbetween(key, self.FT[i], self.FT[i+1]): # key in [FT[i],FT[i+1])
         console.print(f"\t The node {self.FT[i]} is responsible for the key {key}.")
         return self.FT[i]                                   # FT[i] is responsible
